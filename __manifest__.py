@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Warehouse',
     'summary': 'OWL Plugin for Stock Request Order Lines',
-    'depends': ['stock', 'stock_account'],
+    'depends': ['stock', 'stock_account',  'stock_request'],
     'data': [
         'views/stock_request_order_views.xml',
     ],

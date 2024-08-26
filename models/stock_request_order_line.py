@@ -1,14 +1,14 @@
 from odoo import models, fields, api
 
-class StockRequestOrderLine(models.Model):
-    _inherit = 'stock.request.order.line'
+class StockMove(models.Model):
+    _inherit = 'stock.move'
 
     available_qty = fields.Float(string='Available Quantity', compute='_compute_available_qty')
 
-    @api.depends('product_id', 'warehouse_id')
+    @api.depends('product_id', 'location_id')
     def _compute_available_qty(self):
-        for line in self:
-            if line.product_id and line.warehouse_id:
-                line.available_qty = line.product_id.with_context(warehouse=line.warehouse_id.id).qty_available
+        for move in self:
+            if move.product_id and move.location_id:
+                move.available_qty = move.product_id.with_context(location=move.location_id.id).qty_available
             else:
-                line.available_qty = 0
+                move.available_qty = 0

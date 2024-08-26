@@ -17,8 +17,8 @@ class OwlWidget extends Component {
 
     async loadAvailableQty() {
         const record = this.props.record;
-        if (record && record.resModel === 'stock.request.order.line') {
-            const data = await this.orm.read('stock.request.order.line', [record.resId], ['available_qty']);
+        if (record && record.resModel === 'stock.move') {  // Cambiado a 'stock.move'
+            const data = await this.orm.read('stock.move', [record.resId], ['available_qty']);
             this.state.availableQty = data[0]?.available_qty || 0;
         }
     }
